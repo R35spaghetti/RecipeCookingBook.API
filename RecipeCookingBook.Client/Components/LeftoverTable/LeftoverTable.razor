@@ -1,0 +1,45 @@
+@using RecipeCookingBookDto.Library.Dto
+@using RecipeCookingBook.Client.Services
+
+@if (Leftover.Count > 0)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Amount</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var leftover in Leftover)
+        {
+            <tr>
+                <td class="align-middle">
+                    @leftover.Name
+                </td>
+                <td class="align-middle">
+                    @leftover.Amount
+                </td>
+
+
+                <td class="align-middle">
+                    <a href="LeftoverDetails/@leftover.Id" class="btn btn-primary btn-lg active" role="button">Update</a>
+
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+else
+{
+    <p>Loading or empty database</p>
+}
+
+@code {
+
+
+}
