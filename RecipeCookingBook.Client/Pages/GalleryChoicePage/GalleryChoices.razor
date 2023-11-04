@@ -1,0 +1,30 @@
+@page "/galleryChoice"
+@inject NavigationManager UriHelper
+
+<h3>Filter choices</h3>
+<div class="col-md-12 bg-light text-right">
+    <button type="button" @onclick="SendFilterValue0" class="btn btn-primary btn-lg">All recipes</button>
+</div>
+
+<br/><br/>
+<div class="col-md-12 bg-light text-right">
+    <button type="button" @onclick="SendFilterValue1" class="btn btn-primary btn-lg">Compare recipes to your leftovers</button>
+</div>
+
+@code {
+    private string GalleryFilterValue = "0";
+
+    private void SendFilterValue0()
+    {
+        UriHelper.NavigateTo($"gallery/{GalleryFilterValue}");
+    }
+
+
+    private void SendFilterValue1()
+    {
+        GalleryFilterValue = "1";
+
+        UriHelper.NavigateTo($"gallery/{GalleryFilterValue}");
+    }
+
+}

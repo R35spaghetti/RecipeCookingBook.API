@@ -1,0 +1,68 @@
+﻿body {
+}
+
+body {
+}
+
+.Head {
+    text-shadow: 3px 3px 3px #ababab;
+    text-align: center;
+}
+
+.Recipe.Name {
+    text-shadow: 3px 3px 3px #ababab;
+}
+
+
+hr {
+    border: 4px solid #00ffff;
+}
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 380px 380px 380px;
+    grid-gap: 15px;
+}
+
+.grid {
+    display: grid;
+    display: 100vh;
+    grid-template-columns: 2.0fr 2.0fr 2.0fr;
+    grid-template-rows: 2.0fr 0.5fr;
+    grid-template-areas:
+        "item1 item2 item3"
+        "item4 item4 item4";
+    grid-gap: 0.2rem;
+}
+
+#item1 {
+    grid-area: item1;
+}
+
+#item2 {
+    text-align: center;
+    grid-area: item2;
+}
+
+#item3 {
+    grid-area: item3;
+}
+
+#item4 {
+    text-align: center;
+    grid-area: item4;
+}
+
+@media only screen and (max-width: 600px) {
+    .grid {
+        grid-template-columns: 2.0fr;
+        grid-template-rows: 0.2fr 2.0fr 0.5fr 0.2fr;
+        grid-template-areas:
+            "item1"
+            "item2"
+            "item3"
+            "item4";
+    }
+}
+

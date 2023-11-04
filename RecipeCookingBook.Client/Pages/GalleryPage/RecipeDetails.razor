@@ -1,0 +1,151 @@
+﻿@page "/RecipeDetails/{Id:int}"
+@inherits RecipeDetailsBase
+@inject NavigationManager NavManager
+
+<h1 class="Head">Recipe Details</h1>
+<br/>
+<br/>
+
+@if (Recipe == null && ErrorMessage == null)
+{
+    <p class="text-center">
+        <em>Loading recipe details...</em>
+    </p>
+}
+else if (ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage"></DisplayError>
+}
+else
+{
+    <div class="grid">
+        <div id="item1"></div>
+        <div id="item2">
+
+            <h3 class="Recipe-Name">@Recipe.Name</h3>
+            <h5>
+                @foreach (var items in Recipe.Ingredients)
+                {
+                    <p>Ingredient:</p>
+                    <p>@items.Name</p>
+                    <p>@items.Amount</p>
+                }
+            </h5>
+            <h5>Instructions: @Recipe.Instructions</h5>
+            <h5>Category: @Recipe.Category</h5>
+            <h5>Portions: @Recipe.Portions</h5>
+            <h5>Total minutes to prepare: @Recipe.PreparationTimeInMinutes</h5>
+        </div>
+        <div id="item3"></div>
+        <div id="item4">
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-outline-info" @onclick="@BackToGallery">Back To Gallery</button>
+                <button type="button" class="btn btn-outline-danger" @onclick="DeleteRecipe_Click">Remove</button>
+            </div>
+        </div>
+        <br/>
+        <br/>
+    </div>
+}
+<EditForm Model="@Recipe" OnValidSubmit="UpdateRecipeOnValidSubmit">
+
+    <div class="form-group row">
+        <label for="Name" class="col-sm-2 col-form-label">
+            Recipe name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="recipeName" class="form-control" placeholder="Name of recipe"
+                       @bind-Value="Recipe.Name"/>
+            <ValidationMessage For="@(() => Recipe.Name)"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Ingredients" class="col-sm-2 col-form-label">
+            Ingredients
+        </label>
+
+        <div class="col-sm-10">
+
+            @foreach (var ingredients in Recipe.Ingredients)
+            {
+                <br/>
+                <br/>
+                <InputText @bind-Value="@ingredients.Name">Name of ingredient</InputText>
+                <ValidationMessage For="@(() => ingredients.Name)"/>
+                <br/>
+                <InputNumber @bind-Value="@ingredients.Amount">Amount</InputNumber>
+                <ValidationMessage For="@(() => ingredients.Amount)"/>
+                <br/>
+            }
+
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="Instructions" class="col-sm-2 col-form-label">
+            Instructions
+        </label>
+        <div class="col-sm-10">
+            <InputText id="Instructions" class="form-control" placeholder="Instructions"
+                       @bind-Value="Recipe.Instructions"/>
+            <ValidationMessage For="@(() => Recipe.Instructions)"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Category" class="col-sm-2 col-form-label">
+            Category
+        </label>
+        <div class="col-sm-10">
+            <InputText id="Category" class="form-control" placeholder="Category"
+                       @bind-Value="Recipe.Category"/>
+            <ValidationMessage For="@(() => Recipe.Category)"/>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="Portions" class="col-sm-2 col-form-label">
+            Portions
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="Portions" class="form-control" placeholder="Portions"
+                         @bind-Value="Recipe.Portions"/>
+            <ValidationMessage For="@(() => Recipe.Portions)"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="PreparationTimeInMinutes" class="col-sm-2 col-form-label">
+            Minutes to prepare
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="PreparationTimeInMinutes" class="form-control" placeholder="Minutes to prepare"
+                         @bind-Value="Recipe.PreparationTimeInMinutes"/>
+            <ValidationMessage For="@(() => Recipe.PreparationTimeInMinutes)"/>
+        </div>
+    </div>
+
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</EditForm>
+
+@code {
+
+
+    private void BackToGallery()
+    {
+        NavManager.NavigateTo("/galleryChoice");
+    }
+
+    private async Task DeleteRecipe_Click()
+    {
+        await RecipeService.DeleteRecipeAsync(Recipe.Id);
+        NavManager.NavigateTo("/galleryChoice");
+    }
+
+
+}

@@ -1,0 +1,27 @@
+﻿@page "/gallery/{CurrentFilter}/"
+@using RecipeCookingBook.Client.Components.RecipeTable
+@using RecipeCookingBook.Client.Components.Search
+@using RecipeCookingBook.Client.Components.Pagination
+@inherits GalleryBase
+
+<h1 class="Head">Gallery</h1>
+
+
+<div class="row">
+    <div class="col-md-10">
+        <Search OnSearchChanged="SearchChanged"/>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <RecipeTable Recipes="RecipesList"/>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage"/>
+    </div>
+</div>

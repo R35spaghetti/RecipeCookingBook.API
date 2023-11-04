@@ -1,0 +1,58 @@
+@page "/createLeftover"
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavManager
+@inherits CreateLeftoverBase
+
+
+<EditForm Model="CreateLeftover" OnValidSubmit="@CreateLeftover_Click">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-dark"
+                @onclick="@(() => CreateLeftover.Add(new RecipeCookingBookDto.Library.Dto.LeftOverToCreateDto()))">
+            Add 1 more leftover
+        </button>
+    </div>
+
+    @for (var i = 0; i < CreateLeftover.Count; i++)
+    {
+        var index = i;
+        var ingredient = CreateLeftover[i];
+
+        <h5>Leftover @(i + 1)</h5>
+
+        <div class="form-group">
+            <label>Leftover:</label>
+            <InputText class="form-control" @bind-Value="ingredient.Name"/>
+        </div>
+
+
+        <div class="form-group">
+            <label>Amount:</label>
+            <InputNumber class="form-control" @bind-Value="ingredient.Amount"/>
+        </div>
+
+        <br/>
+        <button type="button" class="btn btn-danger"
+                @onclick="@(() => CreateLeftover.RemoveAt(index))">
+            Remove
+        </button>
+    }
+
+
+    <button type="submit" class="btn btn-outline-danger">Add leftovers</button>
+
+</EditForm>
+
+
+@code {
+
+    private async Task CreateLeftover_Click()
+    {
+        await LeftoverService.CreateLeftOverAsync(CreateLeftover);
+        NavManager.NavigateTo("/");
+
+    }
+
+}

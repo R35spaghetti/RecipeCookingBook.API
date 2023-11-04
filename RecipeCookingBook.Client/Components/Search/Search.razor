@@ -1,0 +1,4 @@
+<section style="margin-bottom: 10px">
+    <input type="text" class="form-control" placeholder="Search by recipe name"
+           @bind-value="@SearchTerm" @bind-value:event="oninput" @onkeyup="SearchWhileIdle"/>
+</section>

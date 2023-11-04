@@ -1,0 +1,63 @@
+@using RecipeCookingBookDto.Library.Dto
+@using RecipeCookingBook.Client.Services
+
+@if (Recipes.Count > 0)
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Ingredients</th>
+            <th scope="col">Preparations in minutes</th>
+            <th scope="col">Instructions</th>
+            <th scope="col">Portions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var recipe in Recipes)
+        {
+            <tr>
+
+
+                <td class="align-middle">
+                    @recipe.Name
+                </td>
+                <td class="align-middle">
+                    @foreach (var items in recipe.Ingredients)
+                    {
+                        <p>Ingredient:</p>
+                        <p>@items.Name</p>
+                        <p>@items.Amount</p>
+                    }
+    
+                </td>
+                <td class="align-middle">
+                    @recipe.PreparationTimeInMinutes
+                </td>
+                <td class="align-middle">
+                    @recipe.Instructions
+                </td>
+                <td class="align-middle">
+                    @recipe.Portions
+                </td>
+
+
+                <td class="align-middle">
+                    <a href="RecipeDetails/@recipe.Id" class="btn btn-primary btn-lg active" role="button">Update</a>
+
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Loading or empty database</p>
+}
+
+@code {
+
+
+}

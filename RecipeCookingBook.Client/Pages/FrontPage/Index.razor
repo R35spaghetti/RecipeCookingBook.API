@@ -1,0 +1,52 @@
+﻿@page "/"
+@inherits IndexBase
+
+
+<h1 class="Head">Get a random recipe</h1>
+
+<div class="row justify-content-around">
+    <div class="d-grid gap-2 col-5">
+        <button type="button" class="btn btn-outline-info text-center" @onclick="@GetRandom">Click here</button>
+    </div>
+</div>
+
+
+
+@if (RandomRecipe != null)
+{
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <h2 class="Recipe-Name">@RandomRecipe.Name</h2>
+                <br/>
+                <h5>Category: @RandomRecipe.Category</h5>
+                <h5>Portions: @RandomRecipe.Portions</h5>
+                <h5>Prepare time: @RandomRecipe.PreparationTimeInMinutes</h5>
+            </div>
+
+            <div class="col-sm">
+                <h2>Ingredients:</h2>
+                <h6>
+                    @foreach (var item in RandomRecipe.Ingredients)
+                    {
+                        <p>@item.Name</p>
+                        <p>@item.Amount</p>
+                    }
+                </h6>
+            </div>
+
+
+            <div class="col-sm">
+                <h2>Instructions: @RandomRecipe.Instructions</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+}
+
+@code {
+
+}

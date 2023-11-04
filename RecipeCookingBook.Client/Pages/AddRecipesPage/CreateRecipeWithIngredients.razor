@@ -1,0 +1,124 @@
+﻿@page "/create"
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavManager
+@inherits CreateRecipeWithIngredientsBase
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+
+            <h4 class="Add">Add recipe with their respective ingredients</h4>
+
+            <EditForm Model="@CreateRecipe" OnValidSubmit="@CreateRecipe_Click">
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+                <div class="form-group row">
+                    <h5>
+                        <label for="name">
+                            Name
+                            <InputText id="name" class="form-control" @bind-Value="@CreateRecipe.Name"/>
+                        </label>
+                    </h5>
+                    <br/>
+                </div>
+
+                <div class="form-group row">
+                    <h5>
+                        <label for="PreparationTimeInMinutes">
+                            Minutes to prepare
+                            <InputNumber id="PreparationTimeInMinutes" class="form-control" @bind-Value="@CreateRecipe.PreparationTimeInMinutes"/>
+                        </label>
+                    </h5>
+                    <br/>
+                </div>
+
+                <div class="form-group row">
+                    <h5>
+                        <label for="Portions">
+                            Portions
+                            <InputNumber id="Portions" class="form-control" @bind-Value="@CreateRecipe.Portions"/>
+                        </label>
+                    </h5>
+                    <br/>
+                </div>
+
+                <div class="form-group row">
+                    <h5>
+                        <label for="Category">
+                            Category
+                            <InputText id="Category" class="form-control" @bind-Value="@CreateRecipe.Category"/>
+                        </label>
+                    </h5>
+                    <br/>
+                </div>
+
+                <div class="form-group row">
+                    <h5>
+                        <label for="Instructions">
+                            Instructions
+                            <InputText id="Instructions" class="form-control" @bind-Value="@CreateRecipe.Instructions"/>
+                        </label>
+                    </h5>
+                    <br/>
+                </div>
+
+
+            </EditForm>
+
+        </div>
+
+        <div class="mb-3">
+            <p>How many ingredients?</p>
+        </div>
+        <EditForm Model="@CreateRecipe.Ingredients" OnValidSubmit="@CreateRecipe_Click">
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+
+            <div class="form-group">
+                <button type="button" class="btn btn-dark"
+                        @onclick="@(() => CreateRecipe.Ingredients.Add(new RecipeCookingBookDto.Library.Dto.IngredientToCreateDto()))">
+                    Add ingredient
+                </button>
+            </div>
+            <br/>
+            @for (var i = 0; i < CreateRecipe.Ingredients.Count; i++)
+            {
+                var index = i;
+                var ingredient = CreateRecipe.Ingredients[i];
+
+                <h5>Ingredient @(i + 1)</h5>
+
+                <div class="form-group">
+                    <label>Ingredient:</label>
+                    <InputText class="form-control" @bind-Value="ingredient.Name"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Amount:</label>
+                    <InputNumber class="form-control" @bind-Value="ingredient.Amount"/>
+                </div>
+                <br/>
+                <button type="button" class="btn btn-danger"
+                        @onclick="@(() => CreateRecipe.Ingredients.RemoveAt(index))">
+                    Remove
+                </button>
+            }
+            <br/>
+            <button type="submit" class="btn btn-outline-danger">Add recipe</button>
+
+        </EditForm>
+
+    </div>
+</div>
+
+@code{
+
+
+    private async Task CreateRecipe_Click()
+    {
+        await RecipeService.CreateRecipe(CreateRecipe);
+        NavManager.NavigateTo("/");
+    }
+
+
+}

@@ -1,0 +1,84 @@
+@page "/LeftoverDetails/{Id:int}"
+@inherits LeftoverDetailsBase
+@inject NavigationManager NavManager
+
+<h1 class="Head">Leftover details</h1>
+<br/>
+<br/>
+
+@if (LeftOver == null && ErrorMessage == null)
+{
+    <p class="text-center">
+        <em>Loading leftover details...</em>
+    </p>
+}
+else if (ErrorMessage != null)
+{
+    <DisplayError ErrorMessage="@ErrorMessage"></DisplayError>
+}
+else
+{
+    <div class="grid">
+        <div id="item1"></div>
+        <div id="item2">
+
+            <h3 class="Leftover-Name">@LeftOver.Name</h3>
+
+            <h5>Amount @LeftOver.Amount</h5>
+        </div>
+        <div id="item3"></div>
+        <div id="item4">
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-outline-info" @onclick="@BackToGallery">Back To Gallery</button>
+                <button type="button" class="btn btn-outline-danger" @onclick="DeleteLeftover_Click">Remove</button>
+            </div>
+        </div>
+        <br/>
+        <br/>
+    </div>
+}
+<EditForm Model="@LeftOver" OnValidSubmit="UpdateLeftoverOnValidSubmit">
+
+    <div class="form-group row">
+        <label for="Name" class="col-sm-2 col-form-label">
+            Leftover name
+        </label>
+        <div class="col-sm-10">
+            <InputText id="leftoverName" class="form-control" placeholder="Name of leftover"
+                       @bind-Value="LeftOver.Name"/>
+            <ValidationMessage For="@(() => LeftOver.Name)"/>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="Amount" class="col-sm-2 col-form-label">
+            Amount
+        </label>
+        <div class="col-sm-10">
+            <InputNumber id="leftoverAmount" class="form-control" placeholder="Amount"
+                         @bind-Value="LeftOver.Amount"/>
+            <ValidationMessage For="@(() => LeftOver.Amount)"/>
+        </div>
+    </div>
+
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</EditForm>
+
+@code {
+
+
+    public void BackToGallery()
+    {
+        NavManager.NavigateTo("/galleryChoice");
+    }
+
+    protected async Task DeleteLeftover_Click()
+    {
+        await LeftOverService.DeleteLeftOverAsync(LeftOver.Id);
+        NavManager.NavigateTo("/Leftover");
+    }
+
+
+}

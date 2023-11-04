@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCookingBook.API", "RecipeCookingBook.API\RecipeCookingBook.API.csproj", "{502C1F8C-8170-4501-9C95-26BACB353FC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCookingBookDto.Library", "RecipeCookingBookDto.Library\RecipeCookingBookDto.Library.csproj", "{479BA983-E8D3-4C25-A883-7196BF9BFC66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCookingBook.Client", "RecipeCookingBook.Client\RecipeCookingBook.Client.csproj", "{FCB7164E-FF7F-454D-BD3F-58B4AAAD0053}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeCookingBookPaging.Library", "RecipeCookingBookPaging.Library\RecipeCookingBookPaging.Library.csproj", "{6D173EF1-E164-4A7E-97A4-4BA066450F1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{502C1F8C-8170-4501-9C95-26BACB353FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{502C1F8C-8170-4501-9C95-26BACB353FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{502C1F8C-8170-4501-9C95-26BACB353FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{502C1F8C-8170-4501-9C95-26BACB353FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{479BA983-E8D3-4C25-A883-7196BF9BFC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{479BA983-E8D3-4C25-A883-7196BF9BFC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{479BA983-E8D3-4C25-A883-7196BF9BFC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{479BA983-E8D3-4C25-A883-7196BF9BFC66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCB7164E-FF7F-454D-BD3F-58B4AAAD0053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCB7164E-FF7F-454D-BD3F-58B4AAAD0053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCB7164E-FF7F-454D-BD3F-58B4AAAD0053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCB7164E-FF7F-454D-BD3F-58B4AAAD0053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D173EF1-E164-4A7E-97A4-4BA066450F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D173EF1-E164-4A7E-97A4-4BA066450F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D173EF1-E164-4A7E-97A4-4BA066450F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D173EF1-E164-4A7E-97A4-4BA066450F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
