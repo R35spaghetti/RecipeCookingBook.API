@@ -104,7 +104,7 @@ public class RecipeRepository : IRecipeRepository
             recipe.Name = recipeToUpdate.Name;
             recipe.PreparationTimeInMinutes = recipeToUpdate.PreparationTimeInMinutes;
             recipe.Portions = recipeToUpdate.Portions;
-            recipe.Instructions = recipe.Instructions;
+            recipe.Instructions = recipeToUpdate.Instructions;
             recipe.Ingredients = recipeToUpdate.Ingredients;
             await _dbContext.SaveChangesAsync();
             return recipe;
